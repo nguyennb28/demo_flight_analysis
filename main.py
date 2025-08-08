@@ -137,4 +137,3 @@ def show_detail(df):
 
 for sheet in SHEET_NAMES:
     select_sheet("./files/API_05.04.2023.xls.xlsx", sheet)
-# select_sheet("./files/API_05.04.2023.xls.xlsx", "PNR")
