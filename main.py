@@ -19,6 +19,8 @@ LABEL_NAMES = [
         "second_row": None,
         "first_skiprow": 2,
         "second_skiprow": None,
+        "first_nrows": None,
+        "second_nrows": None,
     },
     {
         "sheet": "Thongtinchung",
@@ -44,6 +46,8 @@ LABEL_NAMES = [
         ],
         "first_skiprow": 2,
         "second_skiprow": 7,
+        "first_nrows": 1,
+        "second_nrows": None,
     },
     {
         "sheet": "Hanhkhach",
@@ -67,6 +71,8 @@ LABEL_NAMES = [
         "second_row": None,
         "first_skiprow": 2,
         "second_skiprow": None,
+        "first_nrows": None,
+        "second_nrows": None,
     },
     {
         "sheet": "PNR",
@@ -90,8 +96,11 @@ LABEL_NAMES = [
         "second_row": None,
         "first_skiprow": 2,
         "second_skiprow": None,
+        "first_nrows": None,
+        "second_nrows": None,
     },
 ]
+
 
 def select_sheet(path, sheet_name):
     sheet = None
@@ -103,29 +112,42 @@ def select_sheet(path, sheet_name):
                 sheet = elem
     if sheet:
         if sheet["first_row"]:
-            first_result = pd.read_excel(
-                path,
-                sheet_name=sheet["sheet"],
-                skiprows=sheet["first_skiprow"],
-                usecols=sheet["first_row"],
-            )
+            if sheet["first_nrows"]:
+                first_result = pd.read_excel(
+                    path,
+                    sheet_name=sheet["sheet"],
+                    skiprows=sheet["first_skiprow"],
+                    usecols=sheet["first_row"],
+                    nrows=sheet["first_nrows"],
+                )
+            else:
+                first_result = pd.read_excel(
+                    path,
+                    sheet_name=sheet["sheet"],
+                    skiprows=sheet["first_skiprow"],
+                    usecols=sheet["first_row"],
+                )
         if sheet["second_row"]:
-            second_result = pd.read_excel(
-                path,
-                sheet_name=sheet["sheet"],
-                skiprows=sheet["second_skiprow"],
-                usecols=sheet["second_row"],
-            )
-    if first_result is None:
-        print(None)
-    else:
+            if sheet["second_nrows"]:
+                second_result = pd.read_excel(
+                    path,
+                    sheet_name=sheet["sheet"],
+                    skiprows=sheet["second_skiprow"],
+                    usecols=sheet["second_row"],
+                    nrows=sheet["second_nrows"],
+                )
+            else:
+                second_result = pd.read_excel(
+                    path,
+                    sheet_name=sheet["sheet"],
+                    skiprows=sheet["second_skiprow"],
+                    usecols=sheet["second_row"],
+                )
+    if first_result is not None:
         print(first_result)
 
-    if second_result is None:
-        print(None)
-    else:
+    if second_result is not None:
         print(second_result)
-
 
 
 def show_detail(df):
