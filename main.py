@@ -43,7 +43,7 @@ LABEL_NAMES = [
             "Ngày hết hạn",
         ],
         "first_skiprow": 2,
-        "second_skiprow": 6,
+        "second_skiprow": 7,
     },
     {
         "sheet": "Hanhkhach",
@@ -135,6 +135,6 @@ def show_detail(df):
         print("-" * 50)
 
 
-# for sheet in SHEET_NAMES:
-    # select_sheet("./files/API_05.04.2023.xls.xlsx", sheet)
-select_sheet("./files/API_05.04.2023.xls.xlsx", "PNR")
+for sheet in SHEET_NAMES:
+    select_sheet("./files/API_05.04.2023.xls.xlsx", sheet)
+# select_sheet("./files/API_05.04.2023.xls.xlsx", "PNR")
