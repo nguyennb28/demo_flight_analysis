@@ -119,6 +119,7 @@ def select_sheet(path, sheet_name):
                     skiprows=sheet["first_skiprow"],
                     usecols=sheet["first_row"],
                     nrows=sheet["first_nrows"],
+                    keep_default_na=False,
                 )
             else:
                 first_result = pd.read_excel(
@@ -126,6 +127,7 @@ def select_sheet(path, sheet_name):
                     sheet_name=sheet["sheet"],
                     skiprows=sheet["first_skiprow"],
                     usecols=sheet["first_row"],
+                    keep_default_na=False,
                 )
         if sheet["second_row"]:
             if sheet["second_nrows"]:
@@ -135,6 +137,7 @@ def select_sheet(path, sheet_name):
                     skiprows=sheet["second_skiprow"],
                     usecols=sheet["second_row"],
                     nrows=sheet["second_nrows"],
+                    keep_default_na=False,
                 )
             else:
                 second_result = pd.read_excel(
@@ -142,6 +145,7 @@ def select_sheet(path, sheet_name):
                     sheet_name=sheet["sheet"],
                     skiprows=sheet["second_skiprow"],
                     usecols=sheet["second_row"],
+                    keep_default_na=False,
                 )
     if first_result is not None:
         print(first_result)
